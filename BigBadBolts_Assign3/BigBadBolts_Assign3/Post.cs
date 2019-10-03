@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 ///*******************************************************************
 //*                                                                  *
-//*  CSCI 473-1/504-1       Assignment 2                Fall   2019  *
+//*  CSCI 473-1/504-1       Assignment 3                Fall   2019  *
 //*                                                                  *
 //*                                                                  *
 //*  Program Name:  Reddit                                           *
@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 /**
  * Pupose : This provides a definition of the Post class
  */
-namespace BigBadBolts_Assign2
+namespace BigBadBolts_Assign3
 {
     /**
     * This is the class definition for the Post class. 
@@ -37,13 +37,16 @@ namespace BigBadBolts_Assign2
         private uint downVotes;
         private uint weight;
         private readonly DateTime timeStamp;
+        private uint silver;
+        private uint gold;
+        private uint platinum;
         private SortedSet<Comment> postComments;
 
         /////////CONSTRUCTOR ZONE////////////////////////////////////////////////////////
         public Post() //DEFAULT CONSTRUCTOR....may need some tweaks
         {
             locked = false;
-            postID = (uint)RedditForm.myPosts.Count + 1;
+            postID = (uint)RedditQueries.myPosts.Count + 1;
             title = "";
             authorID = 0;
             postContent = "";
@@ -52,10 +55,13 @@ namespace BigBadBolts_Assign2
             downVotes = 0;
             weight = 0;
             timeStamp = DateTime.Now;
-            postComments = RedditForm.myComments;
+            silver = 0;
+            gold = 0;
+            platinum = 0;
+            postComments = RedditQueries.myComments;
         }
         //This is used to create a new post
-        public Post(bool _locked, uint _postID, uint _authorID, string _title, string _postContent, uint _subHome, uint _upVotes, uint _downVotes, uint _weight, DateTime _timeStamp)
+        public Post(bool _locked, uint _postID, uint _authorID, string _title, string _postContent, uint _subHome, uint _upVotes, uint _downVotes, uint _weight, DateTime _timeStamp, uint _silver, uint _gold, uint _platinum)
         {
             locked = _locked;
             postID = _postID;
@@ -67,11 +73,14 @@ namespace BigBadBolts_Assign2
             downVotes = _downVotes;
             weight = _weight;
             timeStamp = _timeStamp;
-            postComments = RedditForm.myComments;
+            silver = _silver;
+            gold = _gold;
+            platinum = _platinum;
+            postComments = RedditQueries.myComments;
         }
         public Post(string _title, uint _authorID, string _postContent, uint _subHome)
         {
-            postID = (uint)RedditForm.myPosts.Count + 1;
+            postID = (uint)RedditQueries.myPosts.Count + 1;
             title = _title;
             authorID = _authorID;
             PostContent = _postContent;
@@ -80,7 +89,10 @@ namespace BigBadBolts_Assign2
             downVotes = 0;
             weight = 0;
             timeStamp = DateTime.Now;
-            postComments = RedditForm.myComments;
+            silver = 0;
+            gold = 0;
+            platinum = 0;
+            postComments = RedditQueries.myComments;
         }
         ////////////////END CONSTREUCTOR ZONE///////////////////////////////////////////
 
@@ -219,7 +231,7 @@ namespace BigBadBolts_Assign2
         public override string ToString()
         {
             string authorName = "";
-            foreach (User item in RedditForm.myUsers)
+            foreach (User item in RedditQueries.myUsers)
             {
                 if (item.Id == this.authorID)
                     authorName = item.Name;
@@ -230,7 +242,7 @@ namespace BigBadBolts_Assign2
             string commentsOnPost = "\n";
 
 
-            foreach (Comment postComments in RedditForm.myComments)
+            foreach (Comment postComments in RedditQueries.myComments)
             {
                 if (postComments.CommentID == this.PostID)
                 {

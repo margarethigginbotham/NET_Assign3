@@ -21,7 +21,7 @@ using System.Security.Cryptography;
  * Pupose : This provides reusable functions for the program
  */
 
-namespace BigBadBolts_Assign2
+namespace BigBadBolts_Assign3
 {
     static class HelperFunctions
     {
@@ -90,7 +90,7 @@ namespace BigBadBolts_Assign2
          *             mySubreddits - Sorted set of Subreddit objects
          *             myUsers - Sorted set of user objects
          */
-        static public void getFileInput(SortedSet<Post> myPosts, SortedSet<Comment> myComments, SortedSet<Subreddit> mySubreddits, SortedSet<User> myUsers)
+        static public void getFileInput()
         {
             string currentLine;
             string[] tokens;
@@ -113,7 +113,7 @@ namespace BigBadBolts_Assign2
                         Locked = true;
                     }
                     //File structure
-                    //Posts: Locked | ID | AuthorID | Title | Content | SubredditID | UpVotes | DownVotes | Weight | Year | Month | Day | Hour | Min | Sec
+                    //Posts: Locked | ID | AuthorID | Title | Content | SubredditID | UpVotes | DownVotes | Weight | Year | Month | Day | Hour | Min | Sec | silver | gold | plstinum
 
                     string dateString = tokens[9] + '-' + tokens[10] + '-' + tokens[11] + ' ' + tokens[12] + ':' + tokens[13] + ':' + tokens[14];
                     DateTime temp;
@@ -129,10 +129,13 @@ namespace BigBadBolts_Assign2
                             UInt32.Parse(tokens[6]),//upvotes
                             UInt32.Parse(tokens[7]),//downVotes
                             UInt32.Parse(tokens[8]),//weight
-                            temp//dateTime
+                            temp,//dateTime,
+                            UInt32.Parse(tokens[15]),//Silver
+                            UInt32.Parse(tokens[16]),//Gold
+                            UInt32.Parse(tokens[17])//platinum
                             );
 
-                        RedditForm.myPosts.Add(postToAdd);
+                        RedditQueries.myPosts.Add(postToAdd);
                     }
                     else //We failed to conver the date
                     {
@@ -150,7 +153,7 @@ namespace BigBadBolts_Assign2
                 while (currentLine != null)
                 {
                     tokens = currentLine.Split('\t');
-
+              
                     string dateString = tokens[6] + '-' + tokens[7] + '-' + tokens[8] + ' ' + tokens[9] + ':' + tokens[10] + ':' + tokens[11];
                     DateTime temp;
                     if (DateTime.TryParse(dateString, out temp))//Make sure the date converted successfully
@@ -162,10 +165,13 @@ namespace BigBadBolts_Assign2
                             UInt32.Parse(tokens[3]),//parentID
                             UInt32.Parse(tokens[4]),//upvotes
                             UInt32.Parse(tokens[5]),//downVotes
-                            temp//dateTime
+                            temp,//dateTime
+                            UInt32.Parse(tokens[12]),//Silver
+                            UInt32.Parse(tokens[13]),//Gold
+                            UInt32.Parse(tokens[14])//platinum
                             );
 
-                        RedditForm.myComments.Add(commentToAdd);
+                        RedditQueries.myComments.Add(commentToAdd);
                     }
                     else
                     {
@@ -191,7 +197,7 @@ namespace BigBadBolts_Assign2
                       UInt32.Parse(tokens[3]) //Active
                     );
 
-                    RedditForm.mySubReddits.Add(newSub);
+                    RedditQueries.mySubReddits.Add(newSub);
 
                     currentLine = inFile.ReadLine(); //get the next line
                 }
@@ -223,7 +229,7 @@ namespace BigBadBolts_Assign2
                       moderating //list of the moderating subs names
                     );
 
-                    RedditForm.myUsers.Add(newUser);
+                    RedditQueries.myUsers.Add(newUser);
                     
                     currentLine = inFile.ReadLine(); //get the next line
                 }

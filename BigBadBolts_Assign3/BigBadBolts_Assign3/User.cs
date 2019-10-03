@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 ///*******************************************************************
 //*                                                                  *
-//*  CSCI 473-1/504-1       Assignment 2                Fall   2019  *
+//*  CSCI 473-1/504-1       Assignment 3                Fall   2019  *
 //*                                                                  *
 //*                                                                  *
 //*  Program Name:  Reddit                                           *
@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 /**
  * Pupose : This provides a definition of the User class
  */
-namespace BigBadBolts_Assign2
+namespace BigBadBolts_Assign3
 {
     /* The User class
         * By Margaret
@@ -78,7 +78,7 @@ namespace BigBadBolts_Assign2
         // default constructor for User
         public User()
         {
-            id = (uint)RedditForm.myUsers.Count + 1;
+            id = (uint)RedditQueries.myUsers.Count + 1;
             type = 0;
             name = "";
             passwordHash = "";
@@ -105,7 +105,7 @@ namespace BigBadBolts_Assign2
         //Used to create new user
         public User(string conName)
         {
-            id = (uint)RedditForm.myUsers.Count + 1;
+            id = (uint)RedditQueries.myUsers.Count + 1;
             type = 0;
             name = conName;
             passwordHash = "";

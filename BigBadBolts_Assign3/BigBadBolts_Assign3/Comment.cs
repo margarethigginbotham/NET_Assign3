@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 ///*******************************************************************
 //*                                                                  *
-//*  CSCI 473-1/504-1       Assignment 2                Fall   2019  *
+//*  CSCI 473-1/504-1       Assignment 3                Fall   2019  *
 //*                                                                  *
 //*                                                                  *
 //*  Program Name:  Reddit                                           *
@@ -20,7 +20,7 @@ using System.Threading.Tasks;
  * Pupose : This provides a definition of the Comment class
  */
 
-namespace BigBadBolts_Assign2
+namespace BigBadBolts_Assign3
 {
     /**
          * This is the definition for the Comment class
@@ -35,6 +35,9 @@ namespace BigBadBolts_Assign2
         private uint upVotes;
         private uint downVotes;
         private readonly DateTime timeStamp;
+        private uint silver;
+        private uint gold;
+        private uint platinum;
         private uint indentLevel;
 
 
@@ -84,16 +87,19 @@ namespace BigBadBolts_Assign2
         /////////CONSTRUCTOR ZONE////////////////////////////////////////////////////////
         public Comment() //DEFAULT CONSTRUCTOR....may need some tweaks
         {
-            commentID = (uint)RedditForm.myComments.Count + 1;
+            commentID = (uint)RedditQueries.myComments.Count + 1;
             authorID = 0;
             content = "";
             parentID = 0;
             upVotes = 0;
             downVotes = 0;
             timeStamp = DateTime.Now;
-   
+            silver = 0;
+            gold = 0;
+            platinum = 0;
+
             indentLevel = 0;
-            foreach (Comment tabs in RedditForm.myComments)
+            foreach (Comment tabs in RedditQueries.myComments)
             {
                 if (tabs.CommentID == this.parentID)
                 {
@@ -102,7 +108,7 @@ namespace BigBadBolts_Assign2
             }
         }
         //This is used to create a new post from file.
-        public Comment(uint _commentID, uint _authorID, string _content, uint _parentID, uint _upVotes, uint _downVotes, DateTime _timeStamp)
+        public Comment(uint _commentID, uint _authorID, string _content, uint _parentID, uint _upVotes, uint _downVotes, DateTime _timeStamp, uint _silver, uint _gold, uint _platinum)
         {
             commentID = _commentID;
             content = _content;
@@ -111,8 +117,11 @@ namespace BigBadBolts_Assign2
             upVotes = _upVotes;
             downVotes = _downVotes;
             timeStamp = _timeStamp;
+            silver = _silver;
+            gold = _gold;
+            platinum = _platinum;
             indentLevel = 0;
-            foreach (Comment tabs in RedditForm.myComments)
+            foreach (Comment tabs in RedditQueries.myComments)
             {
                 if (tabs.CommentID == this.parentID)
                 {
@@ -124,15 +133,18 @@ namespace BigBadBolts_Assign2
         //this is used to create a new comment from passed in info
         public Comment(string _content, uint _authorID, uint _parentID)
         {
-            commentID = ((uint)RedditForm.myComments.Count() + 1);
+            commentID = ((uint)RedditQueries.myComments.Count() + 1);
             content = _content;
             authorID = _authorID;
             parentID = _parentID;
             upVotes = 1;
             downVotes = 0;
             timeStamp = DateTime.Now;
+            silver = 0;
+            gold = 0;
+            platinum = 0;
             indentLevel = 0;
-            foreach (Comment tabs in RedditForm.myComments)
+            foreach (Comment tabs in RedditQueries.myComments)
             {
                 if (tabs.CommentID == this.parentID)
                 {
@@ -171,7 +183,7 @@ namespace BigBadBolts_Assign2
         public override string ToString()
         {
             string authorName = "";
-            foreach (User item in RedditForm.myUsers)
+            foreach (User item in RedditQueries.myUsers)
             {
                 if (item.Id == this.authorID)
                 {
@@ -193,11 +205,11 @@ namespace BigBadBolts_Assign2
             string authorName = "";
 
 
-            foreach (Comment reply in RedditForm.myComments)
+            foreach (Comment reply in RedditQueries.myComments)
             {
                 if (parentID == reply.parentID)//we have a reply
                 {
-                    foreach (User item in RedditForm.myUsers)
+                    foreach (User item in RedditQueries.myUsers)
                     {
                         if (item.Id == reply.authorID)
                         {

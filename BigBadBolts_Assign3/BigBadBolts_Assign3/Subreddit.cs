@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 ///*******************************************************************
 //*                                                                  *
-//*  CSCI 473-1/504-1       Assignment 2                Fall   2019  *
+//*  CSCI 473-1/504-1       Assignment 3                Fall   2019  *
 //*                                                                  *
 //*                                                                  *
 //*  Program Name:  Reddit                                           *
@@ -19,7 +19,7 @@ using System.Threading.Tasks;
  * Pupose : This provides a definition of the Subbreddit class
  */
 
-namespace BigBadBolts_Assign2
+namespace BigBadBolts_Assign3
 {
     /* Subreddit class
      * by Margaret
@@ -77,21 +77,21 @@ namespace BigBadBolts_Assign2
         //defult constructor
         public Subreddit()
         {
-            id = (uint)RedditForm.mySubReddits.Count + 1;
+            id = (uint)RedditQueries.mySubReddits.Count + 1;
             name = "";
             members = 0;
             active = 0;
-            subPosts = RedditForm.myPosts;
+            subPosts = RedditQueries.myPosts;
         }
 
         //constructor to create new subreddit
         public Subreddit(string conName)
         {
-            id = (uint)RedditForm.mySubReddits.Count + 1;//A somewhat unique identifier
+            id = (uint)RedditQueries.mySubReddits.Count + 1;//A somewhat unique identifier
             name = conName;
             members = 0;
             active = 0;
-            subPosts = RedditForm.myPosts;
+            subPosts = RedditQueries.myPosts;
         }
 
         //constructor for input file
@@ -101,7 +101,7 @@ namespace BigBadBolts_Assign2
             name = conName;
             members = conMembers;
             active = conActive;
-            subPosts = RedditForm.myPosts;
+            subPosts = RedditQueries.myPosts;
         }
 
         public int CompareTo(Object alpha)
