@@ -20,12 +20,37 @@ namespace BigBadBolts_Assign3
         {
             InitializeComponent();
             HelperFunctions.getFileInput();
-     
+            PopulateDropDowns();
+        }
+
+        private void PopulateDropDowns()
+        {
+            foreach(Subreddit s in mySubReddits) //populate the subreddit award combo box
+            {
+                subbredditAwardComboBox.Items.Add(s);
+            }
         }
 
         private void RedditQueries_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void SubAwardBtn_Click(object sender, EventArgs e)
+        {
+            if (subbredditAwardComboBox.SelectedIndex == -1) //no item selected from dropdown
+            {
+                MessageBox.Show("Please select a SubReddit to view.");
+                return;
+            }
+            if (silverCheckBox.Checked)
+            {
+                MessageBox.Show("CHECKED");
+            }
+            else
+            {
+                MessageBox.Show("EMPTY");
+            }
         }
     }
 }

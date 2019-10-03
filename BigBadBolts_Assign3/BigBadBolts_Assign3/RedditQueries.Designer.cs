@@ -35,6 +35,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.subbredditAwardComboBox = new System.Windows.Forms.ComboBox();
+            this.silverCheckBox = new System.Windows.Forms.CheckBox();
+            this.platinumCheckBox = new System.Windows.Forms.CheckBox();
+            this.goldCheckBox = new System.Windows.Forms.CheckBox();
+            this.subAwardBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // OutputBox
@@ -87,9 +92,9 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.label4.Location = new System.Drawing.Point(12, 287);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(297, 24);
+            this.label4.Size = new System.Drawing.Size(283, 24);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Total awwards within a subbreddit:";
+            this.label4.Text = "Total awards within a subbreddit:";
             // 
             // label5
             // 
@@ -113,12 +118,68 @@
             this.label6.TabIndex = 7;
             this.label6.Text = "Points threshold for Posts/Comments:";
             // 
+            // subbredditAwardComboBox
+            // 
+            this.subbredditAwardComboBox.FormattingEnabled = true;
+            this.subbredditAwardComboBox.Location = new System.Drawing.Point(101, 359);
+            this.subbredditAwardComboBox.Name = "subbredditAwardComboBox";
+            this.subbredditAwardComboBox.Size = new System.Drawing.Size(179, 21);
+            this.subbredditAwardComboBox.TabIndex = 8;
+            // 
+            // silverCheckBox
+            // 
+            this.silverCheckBox.AutoSize = true;
+            this.silverCheckBox.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.silverCheckBox.Location = new System.Drawing.Point(16, 336);
+            this.silverCheckBox.Name = "silverCheckBox";
+            this.silverCheckBox.Size = new System.Drawing.Size(52, 17);
+            this.silverCheckBox.TabIndex = 9;
+            this.silverCheckBox.Text = "Silver";
+            this.silverCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // platinumCheckBox
+            // 
+            this.platinumCheckBox.AutoSize = true;
+            this.platinumCheckBox.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.platinumCheckBox.Location = new System.Drawing.Point(16, 382);
+            this.platinumCheckBox.Name = "platinumCheckBox";
+            this.platinumCheckBox.Size = new System.Drawing.Size(66, 17);
+            this.platinumCheckBox.TabIndex = 10;
+            this.platinumCheckBox.Text = "Platinum";
+            this.platinumCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // goldCheckBox
+            // 
+            this.goldCheckBox.AutoSize = true;
+            this.goldCheckBox.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.goldCheckBox.Location = new System.Drawing.Point(16, 359);
+            this.goldCheckBox.Name = "goldCheckBox";
+            this.goldCheckBox.Size = new System.Drawing.Size(48, 17);
+            this.goldCheckBox.TabIndex = 11;
+            this.goldCheckBox.Text = "Gold";
+            this.goldCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // subAwardBtn
+            // 
+            this.subAwardBtn.Location = new System.Drawing.Point(161, 325);
+            this.subAwardBtn.Name = "subAwardBtn";
+            this.subAwardBtn.Size = new System.Drawing.Size(75, 23);
+            this.subAwardBtn.TabIndex = 12;
+            this.subAwardBtn.Text = "Query";
+            this.subAwardBtn.UseVisualStyleBackColor = true;
+            this.subAwardBtn.Click += new System.EventHandler(this.SubAwardBtn_Click);
+            // 
             // RedditQueries
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(786, 631);
+            this.Controls.Add(this.subAwardBtn);
+            this.Controls.Add(this.goldCheckBox);
+            this.Controls.Add(this.platinumCheckBox);
+            this.Controls.Add(this.silverCheckBox);
+            this.Controls.Add(this.subbredditAwardComboBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -143,6 +204,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox subbredditAwardComboBox;
+        private System.Windows.Forms.CheckBox silverCheckBox;
+        private System.Windows.Forms.CheckBox platinumCheckBox;
+        private System.Windows.Forms.CheckBox goldCheckBox;
+        private System.Windows.Forms.Button subAwardBtn;
     }
 }
 
